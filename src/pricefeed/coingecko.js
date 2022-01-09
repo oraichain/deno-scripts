@@ -1,4 +1,3 @@
-import fetch from 'https://dev.jspm.io/isomorphic-fetch';
 import _ from "https://deno.land/std@0.120.0/node/module.ts";
 
 const httpGet = async (url) => {
