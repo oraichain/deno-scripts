@@ -1,25 +1,17 @@
-import { createRequire } from "https://deno.land/std@0.120.0/node/module.ts";
-console.log("import meta url: ", import.meta.url);
-const nodeRequire = createRequire(import.meta.url);
-const https = nodeRequire("https");
+import fetch from 'https://dev.jspm.io/isomorphic-fetch';
+import _ from "https://deno.land/std@0.120.0/node/module.ts";
 
-const httpGet = (url) => {
-    return new Promise((resolve, reject) => {
-        https
-            .get(url, (res) => {
-                let body = "";
-                res.on("data", (chunk) => (body += chunk));
-                res.on("end", () => resolve(body));
-            })
-            .on("error", reject);
-    });
-};
+const httpGet = async (url) => {
+    const data = await fetch(url).then(data => data.json());
+    console.log("data: ", JSON.stringify(data));
+    return data;
+}
 
 const getPrice = async (url, count) => {
     try {
         if (count > 10) return null;
         const result = await httpGet(url);
-        const resultObj = JSON.parse(result);
+        const resultObj = result;
         return resultObj;
     } catch (error) {
         setTimeout(getPrice, 5000, url, count + 1);
