@@ -3,7 +3,6 @@ import _ from "https://deno.land/std@0.120.0/node/module.ts";
 
 const httpGet = async (url) => {
     const data = await fetch(url).then(data => data.json());
-    console.log("data: ", JSON.stringify(data));
     return data;
 }
 
