@@ -19,7 +19,6 @@ const main = async (data) => {
     for (let i = 0; i < params.length; i++) {
         try {
             let result = await httpPost(params[i]);
-            console.log(result);
             if (result.data && result.data.length > 0) {
                 result.data = result.data.map(data => ({ ...data, score: Math.floor(data.score) }))
                 responses.push(result);
