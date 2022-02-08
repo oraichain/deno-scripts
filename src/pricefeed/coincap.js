@@ -17,7 +17,7 @@ const getPrice = async (url, count) => {
 
 const main = async (symbols) => {
     const responses = [];
-    const listSymbols = JSON.parse(symbols);
+    const listSymbols = JSON.parse(JSON.parse(symbols)[0]);
     const mappingSymbols = ["BTC", "ETH", "BNB", "XRP", "DOGE", "USDT", "LINK", "UNI", "USDC", "BUSD", "ORAI", "DAI", "SOL", "MATIC", "SUSHI", "DOT", "LUNA", "ICP", "XLM", "ATOM", "AAVE", "THETA", "EOS", "CAKE", "AXS", "ALGO", "MKR", "KSM", "XTZ", "FIL", "AMP", "RUNE", "COMP"];
     const urls = listSymbols.map(symbol => `https://api.coincap.io/v2/assets/${symbol}`);
     for (let i = 0; i < urls.length; i++) {

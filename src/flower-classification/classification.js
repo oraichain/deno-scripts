@@ -13,13 +13,13 @@ const httpPost = async (hash) => {
     return data;
 }
 
-const main = async (imageHash) => {
+const main = async (data) => {
+    const params = JSON.parse(data);
     const responses = [];
-    const listImgHashes = JSON.parse(imageHash);
-    for (let i = 0; i < listImgHashes.length; i++) {
+    for (let i = 0; i < params.length; i++) {
         try {
-            let result = await httpPost(listImgHashes[i]);
-            console.log("result data: ", result);
+            let result = await httpPost(params[i]);
+            console.log(result);
             if (result.data && result.data.length > 0) {
                 result.data = result.data.map(data => ({ ...data, score: Math.floor(data.score) }))
                 responses.push(result);

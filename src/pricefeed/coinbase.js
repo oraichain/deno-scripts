@@ -7,7 +7,7 @@ const httpGet = async (url) => {
 
 const main = async (symbols) => {
     const responses = [];
-    const listSymbols = JSON.parse(symbols);
+    const listSymbols = JSON.parse(JSON.parse(symbols)[0]);
     const urls = listSymbols.map(symbol => `https://api.coinbase.com/v2/prices/${symbol}-USD/spot`);
     const finalReult = [];
     for (let i = 0; i < urls.length; i++) {

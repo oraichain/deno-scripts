@@ -7,7 +7,7 @@ const httpGet = async (url) => {
 
 const main = async (symbols) => {
     const responses = [];
-    const listSymbols = JSON.parse(symbols);
+    const listSymbols = JSON.parse(JSON.parse(symbols)[0]);
     const urls = listSymbols.map(symbol => `https://api.kucoin.com/api/v1/prices?currencies=${symbol}`);
     for (let i = 0; i < urls.length; i++) {
         const result = await httpGet(urls[i]);

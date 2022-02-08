@@ -18,7 +18,7 @@ const getPrice = async (url, count) => {
 
 const main = async (symbols) => {
     const responses = [];
-    const listSymbols = JSON.parse(symbols);
+    const listSymbols = JSON.parse(JSON.parse(symbols)[0]);
 
     const urls = listSymbols.map(
         (symbol) =>
