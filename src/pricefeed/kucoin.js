@@ -5,6 +5,10 @@ const httpGet = async (url) => {
     return data;
 }
 
+/* 
+	* @params {string} symbols - the symbols token: '["[\"USDT\", \"UTK\"]"]'
+	*/
+
 const main = async (symbols) => {
     const responses = [];
     const listSymbols = JSON.parse(JSON.parse(symbols)[0]);
