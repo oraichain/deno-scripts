@@ -1,4 +1,5 @@
 import _ from "https://deno.land/std@0.120.0/node/module.ts";
+import { decodeScriptInput } from '../utils.js';
 
 const httpGet = async (url) => {
     const data = await fetch(url).then(data => data.json());
@@ -6,7 +7,8 @@ const httpGet = async (url) => {
 }
 const main = async (symbols) => {
     const responses = [];
-    const listSymbols = JSON.parse(JSON.parse(symbols)[0]);
+    const listSymbols = decodeScriptInput(symbols);
+
     const urls = listSymbols.map(symbol => `https://api.gateio.ws/api/v4/spot/tickers?currency_pair=${symbol}_USDT`);
     for (let i = 0; i < urls.length; i++) {
         const result = await httpGet(urls[i]);
