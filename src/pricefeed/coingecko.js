@@ -1,4 +1,5 @@
 import _ from "https://deno.land/std@0.120.0/node/module.ts";
+import { decodeScriptInput } from '../utils.js'
 
 const httpGet = async (url) => {
     const data = await fetch(url).then(data => data.json());
@@ -18,7 +19,7 @@ const getPrice = async (url, count) => {
 
 const main = async (symbols) => {
     const responses = [];
-    const listSymbols = JSON.parse(JSON.parse(symbols)[0]);
+    const listSymbols = decodeScriptInput(symbols);
 
     const urls = listSymbols.map(
         (symbol) =>
